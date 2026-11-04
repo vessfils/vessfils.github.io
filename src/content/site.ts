@@ -15,7 +15,7 @@ export const site = {
   location: 'Paris, France · Piedmont, Italy' as string | null,
   eyebrow: 'Software engineering · Machine learning · Computer vision',
   intro:
-    'I build intelligent systems at the intersection of software engineering, computer vision and machine learning.',
+    'I build computer vision and machine learning tools that solve concrete industrial problems — and the software that puts them in people’s hands.',
   supporting:
     'Trained at École 42 Paris, most recently working on multi-camera truck re-identification at Veolia. Before that, a career in audit and financial reporting taught me to distrust a number until I know how it was produced.',
 }

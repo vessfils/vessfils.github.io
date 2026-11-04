@@ -1,4 +1,31 @@
 {
+ "cub3d/corner": {
+  "w": 720,
+  "h": 720,
+  "widths": [
+   480,
+   720
+  ],
+  "crisp": false
+ },
+ "cub3d/corridor": {
+  "w": 720,
+  "h": 720,
+  "widths": [
+   480,
+   720
+  ],
+  "crisp": false
+ },
+ "cub3d/minimap": {
+  "w": 720,
+  "h": 720,
+  "widths": [
+   480,
+   720
+  ],
+  "crisp": false
+ },
  "kfs/kfs1_boot": {
   "w": 720,
   "h": 400,
@@ -302,6 +329,115 @@
    400
   ],
   "crisp": true
+ },
+ "matcha/conversation": {
+  "w": 1440,
+  "h": 900,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "crisp": false
+ },
+ "matcha/discover-map": {
+  "w": 1440,
+  "h": 900,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "crisp": false
+ },
+ "matcha/discover": {
+  "w": 1440,
+  "h": 900,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "crisp": false
+ },
+ "matcha/mobile-conversation": {
+  "w": 780,
+  "h": 1688,
+  "widths": [
+   480,
+   780
+  ],
+  "crisp": false
+ },
+ "matcha/mobile-discover": {
+  "w": 780,
+  "h": 1688,
+  "widths": [
+   480,
+   780
+  ],
+  "crisp": false
+ },
+ "matcha/mobile-notifications": {
+  "w": 780,
+  "h": 1688,
+  "widths": [
+   480,
+   780
+  ],
+  "crisp": false
+ },
+ "matcha/notifications": {
+  "w": 1440,
+  "h": 900,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "crisp": false
+ },
+ "matcha/profile": {
+  "w": 1440,
+  "h": 900,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "crisp": false
+ },
+ "matcha/search-filtered": {
+  "w": 1440,
+  "h": 900,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "crisp": false
+ },
+ "mlp/history": {
+  "w": 2381,
+  "h": 776,
+  "widths": [
+   480,
+   960,
+   1600,
+   2000
+  ],
+  "crisp": false
+ },
+ "mlp/training": {
+  "w": 2224,
+  "h": 616,
+  "widths": [
+   480,
+   960,
+   1600,
+   2000
+  ],
+  "crisp": false
  },
  "so-long/map3": {
   "w": 1584,

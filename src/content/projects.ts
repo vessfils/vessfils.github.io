@@ -21,10 +21,10 @@ export const projects: Project[] = [
     period: 'Mar – Sep 2026 · Veolia DEST',
     role: 'Computer vision intern — re-identification research, evaluation, pile-localisation prototype',
     status: 'Research in progress',
-    stack: ['Python', 'PyTorch', 'DINOv3', 'DINOv2', 'CLIP', 'ViT', 'Triplet loss', 'Optuna', 'OpenCV'],
+    stack: ['Python', 'Deep Learning', 'PyTorch', 'DINOv3', 'CLIP', 'ViT', 'Triplet loss', 'Optuna', 'OpenCV'],
     featured: true,
     cover: { visual: 'picture-pipeline' },
-    source: { public: false, note: 'Internal Veolia project — code and site imagery are not public. Diagrams on this page are original illustrations.' },
+    source: { public: false, note: 'Internal Veolia project: code and site images cannot be published, so the figures here are diagrams drawn to explain the method.' },
     facts: [
       { label: 'Team', value: 'Scientific Computing & Modelling (CSM), DEST' },
       { label: 'Data', value: '4 sites · 10 working days · 1,510 truck images · 196 identities' },
@@ -604,7 +604,7 @@ gdt_flush();                                    /* lgdt + far jump */`,
     status: 'Complete',
     stack: ['TypeScript', 'React 19', 'Vite', 'TanStack Query', 'Express 5', 'PostgreSQL', 'Socket.IO', 'Zod', 'Vitest', 'Docker'],
     featured: true,
-    cover: { visual: 'matcha-architecture' },
+    cover: { image: { src: 'matcha/discover-map', alt: 'Matcha discovery map: profile clusters around Paris on a street map' } },
     source: { public: false, note: 'Repository is private — source available on request.' },
     facts: [
       { label: 'Team', value: '2 engineers' },
@@ -681,10 +681,49 @@ gdt_flush();                                    /* lgdt + far jump */`,
       ],
       visuals: [
         {
+          type: 'figure',
+          layout: 'single',
+          caption: 'Discovery: suggested profiles ranked by distance, shared interests and fame rating, with the filter panel on the left.',
+          images: [{ src: 'matcha/discover', alt: 'Discover page with a grid of suggested profiles and a filter sidebar' }],
+        },
+        {
+          type: 'figure',
+          layout: 'grid-2',
+          caption: 'Left: the same suggestions on a map, clustered by area. Right: search with a 15 km maximum distance — the Haversine query at work.',
+          images: [
+            { src: 'matcha/discover-map', alt: 'Map view with profile markers and clusters around Paris' },
+            { src: 'matcha/search-filtered', alt: 'Search results filtered to profiles within 15 km' },
+          ],
+        },
+        {
+          type: 'figure',
+          layout: 'grid-2',
+          caption: 'A public profile with like, report and block actions, and the activity centre listing visits and likes.',
+          images: [
+            { src: 'matcha/profile', alt: 'Public profile page with details, fame rating and actions' },
+            { src: 'matcha/notifications', alt: 'Notifications page listing profile visits and likes' },
+          ],
+        },
+        {
+          type: 'figure',
+          layout: 'single',
+          caption: 'Real-time chat between two matched users (Socket.IO), with read receipts.',
+          images: [{ src: 'matcha/conversation', alt: 'Chat conversation between two matched users' }],
+        },
+        {
+          type: 'figure',
+          layout: 'grid-3',
+          caption: 'The same screens on a phone: discovery, chat and notifications.',
+          images: [
+            { src: 'matcha/mobile-discover', alt: 'Discover page on a phone' },
+            { src: 'matcha/mobile-conversation', alt: 'Chat on a phone' },
+            { src: 'matcha/mobile-notifications', alt: 'Notifications on a phone' },
+          ],
+        },
+        {
           type: 'callout',
           tone: 'note',
-          title: 'Screenshots coming',
-          body: 'Application screenshots will be captured from a local instance seeded with the project’s generated demo profiles (synthetic names, bios and avatars), so no real user data appears.',
+          body: 'Screenshots taken from a local instance filled by the project’s own seed script: 550 synthetic profiles with generated names, initial-based avatars and fake `.seed` email addresses. No real user appears.',
         },
       ],
       results: [
@@ -735,7 +774,7 @@ gdt_flush();                                    /* lgdt + far jump */`,
     status: 'Complete',
     stack: ['Python', 'NumPy', 'pandas', 'Matplotlib'],
     featured: true,
-    cover: { visual: 'mlp-network' },
+    cover: { image: { src: 'mlp/training', alt: 'Training plots drawn by mlp.py: loss, accuracy and PCA decision boundary', fit: 'contain' } },
     source: { public: false, note: 'Repository is private — source available on request.' },
     facts: [
       { label: 'Dataset', value: 'Wisconsin Diagnostic Breast Cancer · 30 features' },
@@ -764,7 +803,21 @@ gdt_flush();                                    /* lgdt + far jump */`,
           ],
         },
       ],
-      architecture: [{ type: 'visual', id: 'mlp-network', wide: true, caption: 'Default configuration: 30 → 64 → 32 → 16 → 8 → 2 (ReLU, softmax).' }],
+      architecture: [
+        {
+          type: 'table',
+          head: ['Layer', 'Units', 'Activation', 'Weights'],
+          rows: [
+            ['Input', '30', '—', 'standardised features'],
+            ['Hidden 1', '64', 'ReLU', 'W1: 64 × 30'],
+            ['Hidden 2', '32', 'ReLU', 'W2: 32 × 64'],
+            ['Hidden 3', '16', 'ReLU', 'W3: 16 × 32'],
+            ['Hidden 4', '8', 'ReLU', 'W4: 8 × 16'],
+            ['Output', '2', 'softmax', 'W5: 2 × 8'],
+          ],
+          caption: 'Default configuration (`--layers 64 32 16 8`). Depth and width are command-line options.',
+        },
+      ],
       highlights: [
         {
           type: 'highlight',
@@ -790,7 +843,12 @@ for c in reversed(range(1, C + 1)):
         },
       ],
       visuals: [
-        { type: 'visual', id: 'mlp-curves', wide: true, caption: 'Training history of the default 4-hidden-layer network, logged every 10 iterations by the training script.' },
+        {
+          type: 'figure',
+          layout: 'single',
+          caption: 'The figure mlp.py draws at the end of training (seed 42): loss, accuracy, and the decision boundary projected onto two principal components. The x-axis counts logging steps of 10 iterations.',
+          images: [{ src: 'mlp/training', alt: 'Loss and accuracy curves and a PCA decision boundary separating benign and malignant samples' }],
+        },
       ],
       results: [
         {
@@ -803,6 +861,12 @@ for c in reversed(range(1, C + 1)):
           footnote: 'The saved model was re-evaluated for this page. A seeded retrain stopped early at iteration 3,300 with 95.1% accuracy and F1 0.925.',
         },
         { type: 'visual', id: 'mlp-grid', caption: 'Final test accuracy of each configuration from the repository’s training-history files. Differences of one or two samples on a 141-sample test set are within noise.' },
+        {
+          type: 'figure',
+          layout: 'single',
+          caption: 'The comparison plot from draw_historic.py: test loss and accuracy of every configuration I trained.',
+          images: [{ src: 'mlp/history', alt: 'Test loss and test accuracy curves for nineteen network configurations' }],
+        },
       ],
       challenges: [
         {
@@ -1252,10 +1316,120 @@ else
     related: ['ft-irc', 'kernel-from-scratch', 'so-long'],
   },
 
+  // ───────────────────────────────────────── CUB3D
+  {
+    slug: 'cub3d',
+    index: '12',
+    title: 'CUB3D',
+    tagline: 'A ray-casting 3D engine in C, from a 2D map',
+    summary:
+      'A first-person maze renderer in the style of early-90s shooters, written in C on top of MiniLibX: it reads a 2D map, casts one ray per screen column and draws textured walls, with doors, a minimap and a ray overlay. Built in a pair; I wrote most of the ray casting and the map parsing.',
+    categories: ['Graphics'],
+    context: 'École 42 · Team of 2',
+    period: 'Dec 2022 – Apr 2023',
+    role: 'Ray casting, map parsing and validation, minimap, input handling',
+    status: 'Complete',
+    stack: ['C', 'MiniLibX (X11)', 'Ray casting', 'Trigonometry', 'Make'],
+    featured: false,
+    cover: { visual: 'cub3d-gameplay' },
+    source: { public: false, note: 'Repository is private — source available on request.' },
+    facts: [
+      { label: 'Resolution', value: '720 × 720, one ray per column' },
+      { label: 'Field of view', value: '60°' },
+      { label: 'Extras', value: 'Doors (E), minimap (M), ray overlay (L)' },
+    ],
+    sections: {
+      context: [
+        {
+          type: 'text',
+          body: [
+            'The program reads a `.cub` file — four wall textures, floor and ceiling colours, and a grid of walls, empty cells, doors and the player’s start — and lets you walk through it in first person. There is no 3D library: every pixel of the view comes from casting rays through a 2D grid and turning distances into wall heights.',
+          ],
+        },
+      ],
+      approach: [
+        { type: 'visual', id: 'cub3d-pipeline', wide: true, caption: 'What happens for each frame.' },
+        {
+          type: 'list',
+          title: 'Who did what',
+          intro: 'A two-person project. From the commit history and git blame:',
+          items: [
+            '**My part** — the ray casting (`ray.c` and the horizontal / vertical intersection functions), the `.cub` parser and map validation, the minimap with its ray overlay, and keyboard handling.',
+            '**My teammate’s part** — the textured wall rendering (`render.c`), the game loop and player movement, plus fixes at the end of the project.',
+          ],
+        },
+      ],
+      highlights: [
+        {
+          type: 'highlight',
+          title: 'Two grid walks per ray instead of small steps',
+          body: [
+            'Instead of advancing a ray pixel by pixel, the caster jumps from one grid line to the next. One walk visits only horizontal grid lines and the other only vertical ones, each with a constant step derived from the ray angle. The nearer of the two hits is the wall, and which one won tells the renderer whether the face is north/south or east/west — that is what selects the texture.',
+          ],
+          code: {
+            lang: 'c',
+            file: 'srcs/castrays/check_horiz_ray.c — init_horizontal_cast',
+            code: `intercept->y = floorf(info->player.coord.y / TILE_SIZE) * TILE_SIZE;
+if (ray->is_ray_facing_down == TRUE)
+    intercept->y += TILE_SIZE;
+intercept->x = info->player.coord.x
+    + (intercept->y - info->player.coord.y) / tanf(ray->ray_angle);
+step->y = TILE_SIZE;
+if (ray->is_ray_facing_up)
+    step->y *= -1;
+step->x = TILE_SIZE / tanf(ray->ray_angle);`,
+          },
+        },
+        {
+          type: 'highlight',
+          title: 'Spacing rays on the screen, not in angle',
+          body: [
+            'The first version added a constant angle between rays, which slightly stretches walls near the edges of the view. The final version computes each ray from its screen column through the projection plane with `atan`, so columns are evenly spaced on screen. The commented-out first version is still in the file.',
+          ],
+          code: {
+            lang: 'c',
+            file: 'srcs/castrays/ray.c — update_rays',
+            code: `distance_projection_plane = (WIN_X / 2) / tanf(info->fov_angle / 2);
+while (++i < info->num_rays)
+{
+    ray_angle = info->player.rotation_angle + atanf((i - info->num_rays / 2)
+            / distance_projection_plane);
+    info->rays[i] = init_ray(ray_angle);
+    cast_ray(info, info->rays + i);
+}`,
+          },
+        },
+      ],
+      visuals: [
+        { type: 'visual', id: 'cub3d-gameplay', wide: true, caption: 'Genuine output of the project’s code. The game targets the Linux MiniLibX, so for this page it was compiled unchanged against a small headless stand-in that saves each frame instead of opening a window; key presses were replayed through the game’s own handlers.' },
+      ],
+      results: [
+        {
+          type: 'list',
+          items: [
+            'Smooth first-person movement and rotation, four directional textures, doors that open with E, a minimap with the cast rays.',
+            'The parser rejects open maps, unknown characters, missing or duplicated start positions and missing textures, each with its own error message.',
+          ],
+        },
+      ],
+      challenges: [
+        {
+          type: 'list',
+          items: [
+            '**Fish-eye distortion.** Raw ray distances make walls bulge in the centre of the view. The renderer multiplies each distance by the cosine of the angle between the ray and the view direction.',
+            '**Edge cases in the map.** A map that is open at its border, or has a `0` at the end of a line, must not let a ray escape the grid. Several of the last commits are about exactly these cases.',
+          ],
+        },
+      ],
+      lessons: [{ type: 'list', items: ['A good intermediate representation (the ray: angle, hit point, distance, which side was hit) cleanly separates geometry from drawing.'] }],
+    },
+    related: ['so-long', 'kernel-from-scratch', 'minishell'],
+  },
+
   // ───────────────────────────────────────── SO_LONG
   {
     slug: 'so-long',
-    index: '12',
+    index: '13',
     title: 'so_long',
     tagline: 'A small 2D tile game with MiniLibX',
     summary:

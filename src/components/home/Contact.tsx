@@ -1,6 +1,7 @@
-import { ArrowUpRight, Check, Copy } from 'lucide-react'
-import { useState } from 'react'
+import { ArrowUpRight, Check, Copy, Download, FileText, MapPin } from 'lucide-react'
+import { useState, type ComponentType } from 'react'
 import { site } from '../../content/site'
+import { GitHubIcon, LinkedInIcon } from '../ui/BrandIcons'
 import { Reveal } from '../ui/Reveal'
 
 export function Contact() {
@@ -16,10 +17,10 @@ export function Contact() {
     }
   }
 
-  const links = [
-    { label: 'GitHub', href: site.github, handle: 'vessfils' },
-    { label: 'LinkedIn', href: site.linkedin, handle: 'jean-francois-campagnolle' },
-    ...(site.resume ? [{ label: 'Résumé', href: site.resume, handle: 'PDF' }] : []),
+  const links: { label: string; href: string; handle: string; Icon: ComponentType<{ size?: number }>; download?: boolean }[] = [
+    { label: 'GitHub', href: site.github, handle: 'github.com/vessfils', Icon: GitHubIcon },
+    { label: 'LinkedIn', href: site.linkedin, handle: 'Jean-François Campagnolle', Icon: LinkedInIcon },
+    ...(site.resume ? [{ label: 'Résumé', href: site.resume, handle: 'PDF · English', Icon: FileText, download: true }] : []),
   ]
 
   return (
@@ -53,20 +54,37 @@ export function Contact() {
           </button>
         </Reveal>
 
-        <Reveal delay={0.15} className="mt-16 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-          {links.map((link) => (
-            <a key={link.label} href={link.href} target="_blank" rel="noreferrer" className="group flex items-center justify-between bg-bg p-5 transition-colors hover:bg-raised">
-              <span>
-                <span className="eyebrow">{link.label}</span>
-                <span className="mt-1 block truncate text-sm text-fg">{link.handle}</span>
+        <Reveal delay={0.15} className="mt-16 grid max-w-3xl gap-3 sm:grid-cols-2">
+          {links.map(({ label, href, handle, Icon, download }) => (
+            <a
+              key={label}
+              href={href}
+              {...(download ? { download: true } : { target: '_blank', rel: 'noreferrer' })}
+              className="group flex items-center gap-4 rounded-xl border border-line p-4 transition-colors hover:border-line-strong hover:bg-raised"
+            >
+              <span className="grid size-11 shrink-0 place-items-center rounded-lg bg-fg/[0.06] text-fg transition-colors group-hover:bg-accent group-hover:text-accent-fg">
+                <Icon size={20} />
               </span>
-              <ArrowUpRight size={16} className="text-faint transition-colors group-hover:text-fg" />
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm font-medium text-fg">{label}</span>
+                <span className="block truncate text-xs text-muted">{handle}</span>
+              </span>
+              {download ? (
+                <Download size={16} className="shrink-0 text-faint transition-colors group-hover:text-fg" />
+              ) : (
+                <ArrowUpRight size={16} className="shrink-0 text-faint transition-colors group-hover:text-fg" />
+              )}
             </a>
           ))}
           {site.location && (
-            <div className="bg-bg p-5">
-              <span className="eyebrow">Based in</span>
-              <span className="mt-1 block text-sm text-fg">{site.location}</span>
+            <div className="flex items-center gap-4 rounded-xl border border-line p-4">
+              <span className="grid size-11 shrink-0 place-items-center rounded-lg bg-fg/[0.06] text-fg">
+                <MapPin size={20} />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm font-medium text-fg">Based in</span>
+                <span className="block text-xs text-muted">{site.location}</span>
+              </span>
             </div>
           )}
         </Reveal>

@@ -31,6 +31,7 @@ const snake: Loader = () => import('./snake')
 const systems: Loader = () => import('./systems')
 const ml: Loader = () => import('./ml')
 const terminals: Loader = () => import('./terminals')
+const cub3d: Loader = () => import('./cub3d')
 
 interface VisualEntry {
   full: ComponentType
@@ -63,8 +64,6 @@ export const visuals: Record<VisualId, VisualEntry> = {
   'matcha-architecture': { full: from(systems, 'MatchaArchitecture'), cover: from(systems, 'MatchaCover') },
   'matcha-schema': { full: from(systems, 'MatchaSchema') },
 
-  'mlp-network': { full: from(ml, 'MlpNetwork'), cover: from(ml, 'MlpNetwork', { compact: true }) },
-  'mlp-curves': { full: from(ml, 'MlpCurves') },
   'mlp-grid': { full: from(ml, 'MlpGrid') },
 
   'dslr-hist': { full: from(ml, 'DslrHist') },
@@ -80,6 +79,9 @@ export const visuals: Record<VisualId, VisualEntry> = {
   'minishell-terminal': { full: from(terminals, 'MinishellTerminal'), cover: from(terminals, 'MinishellTerminal', { compact: true }) },
   'irc-architecture': { full: from(terminals, 'IrcArchitecture') },
   'irc-terminal': { full: from(terminals, 'IrcTerminal'), cover: from(terminals, 'IrcTerminal', { compact: true }) },
+
+  'cub3d-gameplay': { full: from(cub3d, 'Cub3dGameplay'), cover: from(cub3d, 'Cub3dCover') },
+  'cub3d-pipeline': { full: from(cub3d, 'Cub3dPipeline') },
 }
 
 /** Renders a visual by id, in full or cover form, with a quiet placeholder while it loads. */

@@ -1,6 +1,7 @@
-import { ArrowDown, ArrowUpRight } from 'lucide-react'
+import { ArrowDown } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import { site } from '../../content/site'
+import { GitHubIcon, LinkedInIcon } from '../ui/BrandIcons'
 import { ButtonLink } from '../ui/Button'
 import { HeroField } from './HeroField'
 
@@ -44,11 +45,11 @@ export function Hero() {
             </ButtonLink>
           )}
           <div className="ml-1 flex items-center gap-4 text-sm">
-            <a href={site.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-muted hover:text-fg">
-              GitHub <ArrowUpRight size={13} />
+            <a href={site.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-muted hover:text-fg">
+              <GitHubIcon size={16} /> GitHub
             </a>
-            <a href={site.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-muted hover:text-fg">
-              LinkedIn <ArrowUpRight size={13} />
+            <a href={site.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-muted hover:text-fg">
+              <LinkedInIcon size={16} /> LinkedIn
             </a>
           </div>
         </motion.div>

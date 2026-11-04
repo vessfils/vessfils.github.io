@@ -2,51 +2,26 @@
  *  - Gameplay images are genuine captures: the saved model played the game and the project's own
  *    Pygame renderer drew every frame (headless), see README › "Regenerating project media".
  *  - Statistics come from src/content/data/snake.json (200 greedy evaluation games). */
-import { Pause, Play } from 'lucide-react'
-import { useState } from 'react'
-import { useReducedMotion } from 'motion/react'
 import data from '../content/data/snake.json'
 import { Img } from '../components/ui/Img'
+import { AnimatedCapture } from './primitives/AnimatedCapture'
 import { Flow } from './primitives/Flow'
 import { Frame, Legend } from './primitives/Frame'
 
 const [W, H] = data.grid as [number, number]
-const GAMEPLAY = '/media/learn2slither/gameplay.webp'
 const STILL = 'learn2slither/late'
 
-/** Animated capture of a full game, with a pause control. Reduced motion shows a still frame instead. */
+/** The recorded full game (animated WebP) with its pause control. */
 function Gameplay({ className = '' }: { className?: string }) {
-  const reduce = useReducedMotion()
-  const [paused, setPaused] = useState(false)
-  const showStill = reduce || paused
   return (
-    <div className={`relative ${className}`}>
-      {showStill ? (
-        <Img src={STILL} alt="Trained agent late in a game, score 33" sizes="400px" className="h-full w-full" />
-      ) : (
-        <img
-          src={GAMEPLAY}
-          width={400}
-          height={400}
-          alt="Animated capture of the trained agent playing a full game until it reaches length 40"
-          className="h-full w-full [image-rendering:pixelated]"
-          loading="lazy"
-          decoding="async"
-        />
-      )}
-      {!reduce && (
-        <button
-          onClick={(event) => {
-            event.preventDefault()
-            setPaused((p) => !p)
-          }}
-          className="absolute bottom-2 right-2 grid size-8 place-items-center rounded-full bg-black/60 text-white hover:bg-black/80"
-          aria-label={paused ? 'Play animation' : 'Pause animation'}
-        >
-          {paused ? <Play size={14} /> : <Pause size={14} />}
-        </button>
-      )}
-    </div>
+    <AnimatedCapture
+      animation="/media/learn2slither/gameplay.webp"
+      still={STILL}
+      alt="Animated capture of the trained agent playing a full game until it reaches length 40"
+      size={400}
+      pixelated
+      className={className}
+    />
   )
 }
 

@@ -3,7 +3,7 @@
  * schematic or a chart of numbers from the internship report / seminar deck.
  */
 import { motion, useReducedMotion, type TargetAndTransition } from 'motion/react'
-import { useId, useState } from 'react'
+import { useState } from 'react'
 import { BarList } from './primitives/BarList'
 import { Flow } from './primitives/Flow'
 import { Frame } from './primitives/Frame'
@@ -27,53 +27,100 @@ export function PicturePipeline() {
   )
 }
 
-/** Card cover: identities as clusters in embedding space; a query links to its nearest neighbour. */
+/** Simple side-view truck (cab + skip), used as a stand-in for real camera images. */
+function Truck({ x, y, scale = 1, color }: { x: number; y: number; scale?: number; color: string }) {
+  return (
+    <g transform={`translate(${x} ${y}) scale(${scale})`}>
+      <rect x={0} y={8} width={62} height={30} rx={3} fill={color} opacity={0.85} />
+      <rect x={64} y={14} width={26} height={24} rx={4} fill={color} />
+      <rect x={72} y={18} width={13} height={9} rx={1.5} fill="var(--surface)" opacity={0.85} />
+      <rect x={0} y={38} width={90} height={4} fill="var(--fg-muted)" />
+      {[14, 40, 76].map((cx) => (
+        <circle key={cx} cx={cx} cy={45} r={7} fill="var(--fg)" stroke="var(--surface)" strokeWidth={2} />
+      ))}
+    </g>
+  )
+}
+
+/**
+ * Card cover and case-study hero: the re-identification idea in three readable steps.
+ *  1. the photo taken when the truck enters the site,
+ *  2. its signature placed in the embedding space next to the other trucks,
+ *  3. the site-camera images ranked by distance — including a look-alike that must be rejected.
+ */
 export function PictureCover() {
   const reduce = useReducedMotion()
+  const appear = (delay: number) =>
+    reduce ? {} : { initial: { opacity: 0, y: 6 }, animate: { opacity: 1, y: 0 }, transition: { delay, duration: 0.5 } }
+
+  // Signatures of three trucks; "A" is the truck being searched for.
   const clusters = [
-    { cx: 90, cy: 80, color: 'var(--c1)' },
-    { cx: 230, cy: 60, color: 'var(--c3)' },
-    { cx: 300, cy: 160, color: 'var(--c2)' },
-    { cx: 150, cy: 190, color: 'var(--c4)' },
+    { id: 'A', cx: 360, cy: 180, color: 'var(--c1)' },
+    { id: 'B', cx: 470, cy: 120, color: 'var(--c3)' },
+    { id: 'C', cx: 455, cy: 265, color: 'var(--c2)' },
   ]
-  // Deterministic offsets so the cover looks identical on every render.
-  const offsets = [
-    [-18, -8], [12, -16], [20, 10], [-6, 18], [-22, 12], [4, -2], [16, 24],
+  const offsets = [[-22, -10], [14, -20], [24, 8], [-8, 20], [-26, 14], [6, -2]]
+  const results = [
+    // Illustrative values: a smaller distance means a more similar signature.
+    { rank: 1, distance: '0.18', meta: 'cam 2 · 14:09', ok: true, color: 'var(--c1)' },
+    { rank: 2, distance: '0.24', meta: 'cam 3 · 14:12', ok: true, color: 'var(--c1)' },
+    { rank: 3, distance: '0.39', meta: 'cam 1 · 14:31', ok: false, color: 'var(--c1)' },
   ]
-  const gridId = useId() // unique per instance: the cover can appear twice on a page
+
   return (
-    <svg viewBox="0 0 400 250" className="h-full w-full" role="img" aria-label="Illustration: truck images grouped into identity clusters in embedding space">
-      <defs>
-        <pattern id={gridId} width="20" height="20" patternUnits="userSpaceOnUse">
-          <path d="M20 0H0V20" fill="none" stroke="var(--grid)" />
-        </pattern>
-      </defs>
-      <rect width="400" height="250" fill={`url(#${gridId})`} />
-      {clusters.map((c, ci) => (
-        <g key={ci}>
-          <circle cx={c.cx} cy={c.cy} r={36} fill={c.color} opacity={0.07} />
-          {offsets.map(([dx, dy], i) => (
-            <motion.circle
-              key={i}
-              cx={c.cx + dx}
-              cy={c.cy + dy}
-              r={3.5}
-              fill={c.color}
-              initial={reduce ? false : { opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.9, scale: 1 }}
-              transition={{ delay: 0.15 + ci * 0.12 + i * 0.03, duration: 0.4 }}
-            />
-          ))}
-        </g>
-      ))}
-      {/* query → nearest identity */}
-      <motion.line
-        x1={330} y1={52} x2={244} y2={66}
-        stroke="var(--fg)" strokeWidth={1.2} strokeDasharray="3 4"
-        initial={reduce ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 1, duration: 0.8 }}
-      />
-      <rect x={326} y={44} width={16} height={16} rx={3} fill="none" stroke="var(--fg)" strokeWidth={1.5} />
-      <text x={346} y={40} className="fill-faint font-mono text-[10px]">query</text>
+    <svg viewBox="0 0 800 410" className="h-full w-full" role="img" aria-label="Illustration: the entrance photo of a truck is turned into a signature, compared with other trucks' signatures, and the site-camera images are ranked by similarity">
+      {/* 1 — entrance photo */}
+      <motion.g {...appear(0.1)}>
+        <text x={30} y={60} className="fill-faint font-mono text-[17px]">1 · Entrance photo</text>
+        <rect x={30} y={80} width={190} height={130} rx={10} fill="var(--bg)" stroke="var(--line-strong)" />
+        <Truck x={78} y={118} color="var(--c1)" />
+        <text x={30} y={240} className="fill-muted text-[17px]">weighbridge camera</text>
+        <text x={30} y={264} className="fill-faint font-mono text-[15px]">14:05 · truck A</text>
+      </motion.g>
+
+      <motion.path {...appear(0.35)} d="M232 145 H282" stroke="var(--fg-faint)" strokeWidth={2} />
+      <motion.path {...appear(0.35)} d="M274 138 L284 145 L274 152" fill="none" stroke="var(--fg-faint)" strokeWidth={2} />
+
+      {/* 2 — embedding space */}
+      <motion.g {...appear(0.45)}>
+        <text x={300} y={60} className="fill-faint font-mono text-[17px]">2 · Signatures</text>
+        <rect x={300} y={80} width={240} height={270} rx={10} fill="none" stroke="var(--line)" strokeDasharray="4 6" />
+        {clusters.map((c) => (
+          <g key={c.id}>
+            <circle cx={c.cx} cy={c.cy} r={44} fill={c.color} opacity={0.08} />
+            {offsets.map(([dx, dy], i) => (
+              <circle key={i} cx={c.cx + dx} cy={c.cy + dy} r={5} fill={c.color} />
+            ))}
+            <text x={c.cx} y={c.cy + 66} textAnchor="middle" className="fill-muted text-[15px]">truck {c.id}</text>
+          </g>
+        ))}
+        {/* the entrance photo's signature lands in cluster A */}
+        <circle cx={360} cy={180} r={9} fill="none" stroke="var(--fg)" strokeWidth={2.5} />
+        <text x={300} y={378} className="fill-faint text-[15px]">same truck = close · other truck = far</text>
+      </motion.g>
+
+      <motion.path {...appear(0.7)} d="M552 145 H592" stroke="var(--fg-faint)" strokeWidth={2} />
+      <motion.path {...appear(0.7)} d="M584 138 L594 145 L584 152" fill="none" stroke="var(--fg-faint)" strokeWidth={2} />
+
+      {/* 3 — ranked site images */}
+      <motion.g {...appear(0.8)}>
+        <text x={608} y={60} className="fill-faint font-mono text-[17px]">3 · Best matches</text>
+        {results.map((r, i) => {
+          const y = 80 + i * 86
+          return (
+            <g key={r.rank}>
+              <rect x={608} y={y} width={184} height={74} rx={8} fill="var(--bg)" stroke={r.ok ? 'var(--line-strong)' : 'var(--c4)'} strokeDasharray={r.ok ? undefined : '5 4'} />
+              <Truck x={616} y={y + 14} scale={0.55} color={r.color} />
+              <text x={676} y={y + 24} className="fill-fg font-mono text-[15px]">#{r.rank}</text>
+              <text x={676} y={y + 44} className="fill-muted font-mono text-[13px]">distance {r.distance}</text>
+              <text x={676} y={y + 62} className="fill-faint font-mono text-[12px]">{r.meta}</text>
+              <text x={782} y={y + 26} textAnchor="end" className={`text-[20px] ${r.ok ? 'fill-[var(--c1)]' : 'fill-[var(--c4)]'}`}>{r.ok ? '✓' : '✗'}</text>
+            </g>
+          )
+        })}
+        <text x={608} y={378} className="fill-faint text-[15px]">lower distance = more similar</text>
+        <text x={608} y={398} className="fill-faint text-[15px]">#3 is a look-alike truck</text>
+      </motion.g>
     </svg>
   )
 }

@@ -3,6 +3,8 @@ export interface MediaRef {
   src: string
   alt: string
   caption?: string
+  /** As a project cover: 'contain' shows the whole image (for wide figures) instead of cropping it. */
+  fit?: 'cover' | 'contain'
 }
 
 /** Custom React visuals (diagrams, charts, demos) are referenced by id and resolved in src/components/registry.tsx. */
@@ -27,8 +29,6 @@ export type VisualId =
   | 'kfs-interrupts'
   | 'matcha-architecture'
   | 'matcha-schema'
-  | 'mlp-network'
-  | 'mlp-curves'
   | 'mlp-grid'
   | 'dslr-hist'
   | 'dslr-scatter'
@@ -40,6 +40,8 @@ export type VisualId =
   | 'minishell-terminal'
   | 'irc-architecture'
   | 'irc-terminal'
+  | 'cub3d-gameplay'
+  | 'cub3d-pipeline'
 
 export type Block =
   | { type: 'text'; title?: string; body: string[] }
