@@ -1,0 +1,200 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* ---------- Design tokens ---------- */
+:root,
+[data-theme='dark'] {
+  --bg: #0b0c0e;
+  --bg-raised: #111215;
+  --bg-sunken: #08090a;
+  --surface: #15171a;
+  --line: rgb(255 255 255 / 0.08);
+  --line-strong: rgb(255 255 255 / 0.14);
+  --fg: #ececed;
+  --fg-muted: #a0a2a9;
+  --fg-faint: #6c6f77;
+  --accent: #7fc4bf;
+  --accent-soft: rgb(127 196 191 / 0.12);
+  --accent-fg: #0b0c0e;
+  /* Chart series — validated (dataviz validator) on the dark surface */
+  --c1: #2fa59b;
+  --c2: #d0721f;
+  --c3: #7b86e6;
+  --c4: #db5c84;
+  --grid: rgb(255 255 255 / 0.05);
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #f7f7f5;
+  --bg-raised: #ffffff;
+  --bg-sunken: #efefec;
+  --surface: #ffffff;
+  --line: rgb(17 18 20 / 0.09);
+  --line-strong: rgb(17 18 20 / 0.16);
+  --fg: #121316;
+  --fg-muted: #565a62;
+  --fg-faint: #80838b;
+  --accent: #1d6f6b;
+  --accent-soft: rgb(29 111 107 / 0.09);
+  --accent-fg: #ffffff;
+  /* Chart series — validated on the light surface */
+  --c1: #008f80;
+  --c2: #c8611a;
+  --c3: #4d5fd0;
+  --c4: #c7416a;
+  --grid: rgb(17 18 20 / 0.05);
+  color-scheme: light;
+}
+
+@theme inline {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
+  --color-bg: var(--bg);
+  --color-raised: var(--bg-raised);
+  --color-sunken: var(--bg-sunken);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-faint: var(--fg-faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-fg: var(--accent-fg);
+  --color-c1: var(--c1);
+  --color-c2: var(--c2);
+  --color-c3: var(--c3);
+  --color-c4: var(--c4);
+}
+
+/* ---------- Base ---------- */
+html {
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+body {
+  background: var(--bg);
+  font-family: var(--font-sans);
+  font-feature-settings: 'ss01', 'cv11';
+  overflow-x: hidden;
+}
+::selection {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- Utilities ---------- */
+@utility container-page {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
+}
+@utility container-prose {
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+}
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+@utility grid-backdrop {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Prose for case studies */
+.prose-cs p {
+  color: var(--fg-muted);
+  line-height: 1.75;
+  font-size: 1.0625rem;
+}
+.prose-cs p + p {
+  margin-top: 1rem;
+}
+.prose-cs strong {
+  color: var(--fg);
+  font-weight: 550;
+}
+.prose-cs code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--bg-sunken);
+  border: 1px solid var(--line);
+  color: var(--fg);
+}
+.prose-cs ul {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+}
+.prose-cs li {
+  color: var(--fg-muted);
+  line-height: 1.65;
+  padding-left: 1.25rem;
+  position: relative;
+}
+.prose-cs li::before {
+  content: '';
+  position: absolute;
+  left: 0.15rem;
+  top: 0.72em;
+  width: 0.45rem;
+  height: 1px;
+  background: var(--accent);
+}

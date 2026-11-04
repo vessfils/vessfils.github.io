@@ -1,0 +1,325 @@
+{
+ "kfs/kfs1_boot": {
+  "w": 720,
+  "h": 400,
+  "widths": [
+   1440
+  ],
+  "crisp": true
+ },
+ "kfs/kfs2_boot": {
+  "w": 720,
+  "h": 400,
+  "widths": [
+   1440
+  ],
+  "crisp": true
+ },
+ "kfs/kfs2_gdt": {
+  "w": 720,
+  "h": 400,
+  "widths": [
+   1440
+  ],
+  "crisp": true
+ },
+ "kfs/kfs2_help": {
+  "w": 720,
+  "h": 400,
+  "widths": [
+   1440
+  ],
+  "crisp": true
+ },
+ "kfs/kfs2_stack": {
+  "w": 720,
+  "h": 400,
+  "widths": [
+   1440
+  ],
+  "crisp": true
+ },
+ "kfs/kfs2_ticks": {
+  "w": 720,
+  "h": 400,
+  "widths": [
+   1440
+  ],
+  "crisp": true
+ },
+ "kfs/kfs2_tty1_restored": {
+  "w": 720,
+  "h": 400,
+  "widths": [
+   1440
+  ],
+  "crisp": true
+ },
+ "kfs/kfs2_tty2": {
+  "w": 720,
+  "h": 400,
+  "widths": [
+   1440
+  ],
+  "crisp": true
+ },
+ "leaffliction/analyze_object": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/blur": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/histogram": {
+  "w": 436,
+  "h": 347,
+  "widths": [
+   436
+  ],
+  "crisp": false
+ },
+ "leaffliction/mask": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/original": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/pseudolandmarks": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/roi": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_Apple_Black_rot": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_Apple_healthy": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_Apple_rust": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_Apple_scab": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_Grape_Black_rot": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_Grape_Esca": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_Grape_healthy": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_Grape_spot": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_0": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_1": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_10": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_11": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_2": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_3": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_4": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_5": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_6": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_7": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_8": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "leaffliction/sample_pred_9": {
+  "w": 256,
+  "h": 256,
+  "widths": [
+   256
+  ],
+  "crisp": false
+ },
+ "learn2slither/late": {
+  "w": 200,
+  "h": 200,
+  "widths": [
+   400
+  ],
+  "crisp": true
+ },
+ "learn2slither/mid": {
+  "w": 200,
+  "h": 200,
+  "widths": [
+   400
+  ],
+  "crisp": true
+ },
+ "learn2slither/start": {
+  "w": 200,
+  "h": 200,
+  "widths": [
+   400
+  ],
+  "crisp": true
+ },
+ "so-long/map3": {
+  "w": 1584,
+  "h": 792,
+  "widths": [
+   480,
+   960,
+   1584
+  ],
+  "crisp": false
+ },
+ "so-long/map4": {
+  "w": 792,
+  "h": 648,
+  "widths": [
+   480,
+   792
+  ],
+  "crisp": false
+ }
+}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jean-François Campagnolle — Software & Machine Learning Engineer</title>
+    <meta name="description" content="Software and machine learning engineer working on computer vision, deep learning and systems. Applied computer vision at Veolia, École 42 Paris." />
+    <link rel="canonical" href="https://vessfils.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jean-François Campagnolle" />
+    <meta property="og:title" content="Jean-François Campagnolle — Software & Machine Learning Engineer" />
+    <meta property="og:description" content="Computer vision, deep learning and systems engineering. Case studies with real results." />
+    <meta property="og:url" content="https://vessfils.github.io/" />
+    <meta property="og:image" content="https://vessfils.github.io/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0b0c0e" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      try {
+        var t = localStorage.getItem('theme')
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t
+        else if (window.matchMedia('(prefers-color-scheme: light)').matches) document.documentElement.dataset.theme = 'light'
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>This portfolio needs JavaScript to render its interactive case studies.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
