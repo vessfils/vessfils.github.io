@@ -3,3 +3,6 @@ dist
 .DS_Store
 *.log
 .vite
+
+# Local Claude Code settings (not part of the site)
+.claude/
