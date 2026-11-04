@@ -54,40 +54,29 @@ export function Contact() {
           </button>
         </Reveal>
 
-        <Reveal delay={0.15} className="mt-16 grid max-w-3xl gap-3 sm:grid-cols-2">
+        <Reveal delay={0.15} className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
           {links.map(({ label, href, handle, Icon, download }) => (
             <a
               key={label}
               href={href}
+              title={handle}
               {...(download ? { download: true } : { target: '_blank', rel: 'noreferrer' })}
-              className="group flex items-center gap-4 rounded-xl border border-line p-4 transition-colors hover:border-line-strong hover:bg-raised"
+              className="group inline-flex min-h-10 items-center gap-2 text-muted transition-colors hover:text-fg"
             >
-              <span className="grid size-11 shrink-0 place-items-center rounded-lg bg-fg/[0.06] text-fg transition-colors group-hover:bg-accent group-hover:text-accent-fg">
-                <Icon size={20} />
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-sm font-medium text-fg">{label}</span>
-                <span className="block truncate text-xs text-muted">{handle}</span>
-              </span>
-              {download ? (
-                <Download size={16} className="shrink-0 text-faint transition-colors group-hover:text-fg" />
-              ) : (
-                <ArrowUpRight size={16} className="shrink-0 text-faint transition-colors group-hover:text-fg" />
-              )}
+              <Icon size={16} />
+              <span className="link-underline">{label}</span>
+              {download ? <Download size={13} className="text-faint group-hover:text-fg" /> : <ArrowUpRight size={13} className="text-faint group-hover:text-fg" />}
             </a>
           ))}
-          {site.location && (
-            <div className="flex items-center gap-4 rounded-xl border border-line p-4">
-              <span className="grid size-11 shrink-0 place-items-center rounded-lg bg-fg/[0.06] text-fg">
-                <MapPin size={20} />
-              </span>
-              <span className="min-w-0">
-                <span className="block text-sm font-medium text-fg">Based in</span>
-                <span className="block text-xs text-muted">{site.location}</span>
-              </span>
-            </div>
-          )}
         </Reveal>
+
+        {site.location && (
+          <Reveal delay={0.2}>
+            <p className="mt-10 inline-flex items-center gap-2 text-xs text-faint">
+              <MapPin size={13} aria-hidden /> {site.location}
+            </p>
+          </Reveal>
+        )}
       </div>
     </section>
   )
