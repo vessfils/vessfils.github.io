@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { site } from '../../content/site'
+import { preferredResume } from '../../lib/resume'
 import { useTheme } from '../../lib/theme'
 
 const links = [
@@ -14,6 +15,7 @@ const links = [
 
 /** Sticky top bar. Becomes opaque once the page scrolls; collapses into a sheet on small screens. */
 export function Nav() {
+	const resume = preferredResume()
 	const { theme, toggle } = useTheme()
 	const [scrolled, setScrolled] = useState(false)
 	const [menuOpen, setMenuOpen] = useState(false)
@@ -49,9 +51,9 @@ export function Nav() {
 						))}
 					</ul>
 
-					{site.resume && (
+					{resume && (
 						<a
-							href={site.resume}
+							href={resume}
 							download
 							className="ml-2 hidden rounded-full border border-line-strong px-3.5 py-1.5 text-xs font-medium hover:border-fg/40 md:inline-flex"
 						>

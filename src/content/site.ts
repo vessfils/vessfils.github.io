@@ -11,6 +11,8 @@ export const site = {
   linkedin: 'https://www.linkedin.com/in/jean-francois-campagnolle',
   /** Path of the downloadable CV in /public. Set to null to hide every résumé button. */
   resume: '/Jean-Francois-Campagnolle-CV.pdf' as string | null,
+  /** CV with the Italian address, in /public, offered instead to visitors whose browser is in Italian. Set to null to disable. */
+  resumeIt: '/Jean-Francois-Campagnolle-CV-IT.pdf' as string | null,
   /** Shown in the contact section. Set to null to hide it. */
   location: 'Paris, France · Piedmont, Italy' as string | null,
   eyebrow: 'Software engineering · Machine learning · Computer vision',
