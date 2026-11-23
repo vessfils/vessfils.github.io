@@ -53,7 +53,7 @@ export function Nav() {
 
 					{resume && (
 						<a
-							href={resume.href}
+							href={resume}
 							download
 							className="ml-2 hidden rounded-full border border-line-strong px-3.5 py-1.5 text-xs font-medium hover:border-fg/40 md:inline-flex"
 						>

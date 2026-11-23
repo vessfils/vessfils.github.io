@@ -42,7 +42,7 @@ export function Hero() {
 						Explore my work <ArrowDown size={15} className="transition-transform group-hover:translate-y-0.5" />
 					</ButtonLink>
 					{resume && (
-						<ButtonLink to={resume.href} variant="ghost" download>
+						<ButtonLink to={resume} variant="ghost" download>
 							Download CV
 						</ButtonLink>
 					)}
