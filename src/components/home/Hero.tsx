@@ -1,11 +1,13 @@
 import { ArrowDown } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import { site } from '../../content/site'
+import { preferredResume } from '../../lib/resume'
 import { GitHubIcon, LinkedInIcon } from '../ui/BrandIcons'
 import { ButtonLink } from '../ui/Button'
 import { HeroField } from './HeroField'
 
 export function Hero() {
+	const resume = preferredResume()
 	const reduce = useReducedMotion()
 	const rise = (delay: number) =>
 		reduce
@@ -39,8 +41,8 @@ export function Hero() {
 					<ButtonLink to="/#work">
 						Explore my work <ArrowDown size={15} className="transition-transform group-hover:translate-y-0.5" />
 					</ButtonLink>
-					{site.resume && (
-						<ButtonLink to={site.resume} variant="ghost" download>
+					{resume && (
+						<ButtonLink to={resume.href} variant="ghost" download>
 							Download CV
 						</ButtonLink>
 					)}

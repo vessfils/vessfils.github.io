@@ -1,6 +1,7 @@
 import { ArrowUpRight, Check, Copy, Download, FileText, MapPin } from 'lucide-react'
 import { useState, type ComponentType } from 'react'
 import { site } from '../../content/site'
+import { allResumes } from '../../lib/resume'
 import { GitHubIcon, LinkedInIcon } from '../ui/BrandIcons'
 import { Reveal } from '../ui/Reveal'
 
@@ -20,7 +21,7 @@ export function Contact() {
 	const links: { label: string; href: string; handle: string; Icon: ComponentType<{ size?: number }>; download?: boolean }[] = [
 		{ label: 'GitHub', href: site.github, handle: 'github.com/vessfils', Icon: GitHubIcon },
 		{ label: 'LinkedIn', href: site.linkedin, handle: 'Jean-François Campagnolle', Icon: LinkedInIcon },
-		...(site.resume ? [{ label: 'CV', href: site.resume, handle: 'PDF · English', Icon: FileText, download: true }] : []),
+		...allResumes().map((resume) => ({ label: `CV · ${resume.language}`, href: resume.href, handle: `PDF · ${resume.language}`, Icon: FileText, download: true })),
 	]
 
 	return (
